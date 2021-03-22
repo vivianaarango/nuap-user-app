@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nuap.Views.CartPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundImageSource="CART1.png">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Cart}"
+            Padding="5,180,0,0">
+            <Label
+                Text="Carrito de compras"
+                Padding="20,10,0,0"
+                TextColor="#0274bc" 
+                FontFamily="Poppins-Bold"
+                FontSize="20"
+                VerticalOptions="Center">
+            </Label>
+            <Label
+                Text="Genial ya casi tienes tus productos"
+                Padding="20,0,0,0"
+                TextColor="#0274bc" 
+                FontFamily="Poppins"
+                FontSize="18"
+                VerticalOptions="Center">
+            </Label>
+            <StackLayout
+                Orientation="Horizontal">
+                <Image
+                    Margin="20,20,0,0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Source="ic_marcador_de_posicion">
+                </Image>
+                <Label
+                    Text="Direccion 01"
+                    Margin="0,20,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins-Bold"
+                    FontSize="15"
+                    VerticalOptions="Center">
+                </Label>
+            </StackLayout>
+            <Label
+                Text="Lista de compras"
+                Padding="20,10,0,0"
+                TextColor="#0274bc" 
+                FontFamily="Poppins-Bold"
+                FontSize="20"
+                VerticalOptions="Center">
+            </Label>
+            <ListView 
+                BackgroundColor="White"
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding Cart}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                BorderColor="Transparent"
+                                CornerRadius="20"
+                                Margin="5,0,5,5">
+                                <StackLayout 
+                                    Padding="5,0,0,0"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center">
+                                    <StackLayout>
+                                        <Label 
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            FontFamily="Poppins"
+                                            FontSize="15" 
+                                            Text="{Binding Name}"
+                                            TextColor="#3a3a3a">
+                                        </Label>
+                                    </StackLayout>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout 
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center">
+                                            <StackLayout>
+                                                <Image 
+                                                    HeightRequest="60"
+                                                    WidthRequest="60"
+                                                    Source="{Binding Image}" 
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand">
+                                                </Image>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Column="1"
+                                            Padding="0,0,0,0"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center">
+                                            <StackLayout
+                                                Padding="20,2,0,0"
+                                                Orientation="Horizontal">
+                                                <Image 
+                                                    HeightRequest="30"
+                                                    Source="menos" 
+                                                    HorizontalOptions="EndAndExpand"
+                                                    VerticalOptions="Center">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding DiminishCommand}"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Entry
+                                                    Text="{Binding Quantity, Mode=TwoWay}"
+                                                    FontFamily="Poppins"
+                                                    TextColor="#c4c4c4"
+                                                    Keyboard="Numeric"
+                                                    WidthRequest="60"
+                                                    Placeholder="0"
+                                                    FontSize="16"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    HorizontalTextAlignment="Center">
+                                                </Entry>
+                                                <Image 
+                                                    HeightRequest="30"
+                                                    Source="mas" 
+                                                    HorizontalOptions="EndAndExpand"
+                                                    VerticalOptions="Center">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding IncreaseCommand}"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                            <StackLayout
+                                                Orientation="Horizontal"
+                                                HorizontalOptions="EndAndExpand">
+                                                <Label
+                                                    Text="$"
+                                                    Padding="20,2,0,0"
+                                                    TextColor="#1b1464" 
+                                                    FontFamily="Poppins-Bold"
+                                                    FontSize="18"
+                                                    VerticalOptions="Center">
+                                                </Label>
+                                                <Label
+                                                    Text="{Binding Price}"
+                                                    Padding="0,2,0,0"
+                                                    TextColor="#1b1464" 
+                                                    FontFamily="Poppins-Bold"
+                                                    FontSize="18"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center">
+                                                </Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout
+                Orientation="Horizontal">
+                <Label
+                    Text="Total:"
+                    Padding="20,15,0,0"
+                    TextColor="#2c3d55" 
+                    FontFamily="Poppins"
+                    FontSize="18"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="$"
+                    Padding="5,15,0,0"
+                    TextColor="#2c3d55" 
+                    FontFamily="Poppins"
+                    FontSize="18"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="{Binding Total}"
+                    Padding="0,15,0,15"
+                    TextColor="#2c3d55" 
+                    FontFamily="Poppins"
+                    FontSize="18"
+                    VerticalOptions="Center">
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

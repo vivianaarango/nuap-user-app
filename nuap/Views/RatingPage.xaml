@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nuap.Views.RatingPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Rating}"
+            BackgroundColor="White">
+            <Label
+                Text="Calificar Compra"
+                Padding="20,20,0,0"
+                TextColor="#0274bc" 
+                FontFamily="Poppins-Bold"
+                FontSize="20"
+                VerticalOptions="Center">
+            </Label>
+            <StackLayout
+                Orientation="Horizontal">
+                <Label
+                    Text="Pedido #"
+                    Padding="20,0,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins-Bold"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="{Binding OrderId}"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins-Bold"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+            </StackLayout>
+            <StackLayout
+                Orientation="Horizontal">
+                <Label
+                    Text="¿Cuál es tu calificaciòn?"
+                    Padding="20,30,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="16"
+                    VerticalOptions="Center">
+                </Label>
+            </StackLayout>
+            <StackLayout
+                Padding="20,10,0,0"
+                Orientation="Horizontal">
+                <Image
+                    Source="{Binding OneStar}"
+                    HorizontalOptions="Center"
+                    Background="Transparent"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OneStarCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    Source="{Binding TwoStars}"
+                    HorizontalOptions="Center"
+                    Background="Transparent"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TwoStarsCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    Source="{Binding ThreeStars}"
+                    HorizontalOptions="Center"
+                    Background="Transparent"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ThreeStarsCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    Source="{Binding FourStars}"
+                    HorizontalOptions="Center"
+                    Background="Transparent"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FourStarsCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    Source="{Binding FiveStars}"
+                    HorizontalOptions="Center"
+                    Background="Transparent"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FiveStarsCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <StackLayout
+                Padding="20,80,20,0">
+                <Label
+                    Text="¿En que podemos mejorar?"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Frame
+                    CornerRadius="15"
+                    OutlineColor="#dadada"
+                    VerticalOptions="CenterAndExpand">
+                    <Editor
+                        Placeholder="Escribir..."
+                        FontFamily="Poppins"
+                        FontSize="16"
+                        TextColor="#3a3a3a"
+                        PlaceholderColor="#3a3a3a"
+                        VerticalOptions="FillAndExpand" 
+                        HorizontalOptions="FillAndExpand"
+                        HeightRequest="120"
+                        Text="{Binding Comment, Mode=TwoWay}">
+                    </Editor>
+                </Frame>
+            </StackLayout>
+            <StackLayout>
+                <Button
+                    VerticalOptions="EndAndExpand"
+                    Text="Enviar"
+                    FontFamily="Poppins-Bold"
+                    TextTransform="None"
+                    BackgroundColor="#ffc33a"
+                    HeightRequest="50"
+                    TextColor="#3a3a3a"
+                    BorderRadius="15"
+                    Margin="20,150,20,15"
+                    FontSize="16"
+                    Command="{Binding SendRatingCommand}"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

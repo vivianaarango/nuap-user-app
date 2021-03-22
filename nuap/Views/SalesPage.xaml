@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="nuap.Views.SalesPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    BackgroundImageSource="Ventas.png">
+    <ContentPage.Content>
+        <ScrollView
+            Margin="20,220,0,0">
+            <StackLayout
+                Orientation="Vertical"
+                BindingContext="{Binding Sales}"
+                Padding="5,5,0,0">
+                <ScrollView
+                    HorizontalScrollBarVisibility="Never"
+                    Orientation="Horizontal">
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <Button
+                            Command="{Binding GetAllCommand}"
+                            Text="Todos"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            BackgroundColor="#cdeefb"
+                            HeightRequest="40"
+                            TextColor="#64a2e5"
+                            BorderRadius="12"
+                            FontSize="14">
+                        </Button>
+                        <Button
+                            Command="{Binding GetInitiatedCommand}"
+                            Text="Iniciadas"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            BackgroundColor="#cdeefb"
+                            HeightRequest="40"
+                            TextColor="#64a2e5"
+                            BorderRadius="12"
+                            FontSize="14">
+                        </Button>
+                        <Button
+                            Command="{Binding GetAceptedCommand}"
+                            Text="Aceptadas"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            BackgroundColor="#cdeefb"
+                            HeightRequest="40"
+                            TextColor="#64a2e5"
+                            BorderRadius="12"
+                            FontSize="14">
+                        </Button>
+                        <Button
+                            Command="{Binding GetEnlistmentCommand}"
+                            Text="Alistamiento"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            BackgroundColor="#cdeefb"
+                            HeightRequest="40"
+                            TextColor="#64a2e5"
+                            BorderRadius="12"
+                            FontSize="14">
+                        </Button>
+                        <Button
+                            Command="{Binding GetCirculationCommand}"
+                            Text="Circulación"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            BackgroundColor="#cdeefb"
+                            HeightRequest="40"
+                            TextColor="#64a2e5"
+                            BorderRadius="12"
+                            FontSize="14">
+                        </Button>
+                        <Button
+                            Command="{Binding GetDeliveredCommand}"
+                            Text="Entregadas"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            BackgroundColor="#cdeefb"
+                            HeightRequest="40"
+                            TextColor="#64a2e5"
+                            BorderRadius="12"
+                            FontSize="14">
+                        </Button>
+                        <Button
+                            Command="{Binding GetCanceledCommand}"
+                            Text="Canceladas"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            BackgroundColor="#cdeefb"
+                            HeightRequest="40"
+                            TextColor="#64a2e5"
+                            BorderRadius="12"
+                            FontSize="14">
+                        </Button>
+                    </StackLayout>
+                </ScrollView>
+                <Label
+                    Text="Ventas"
+                    Padding="20,10,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins-Bold"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="Iniciadas"
+                    Padding="20,5,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="No existen ordenes en este estado."
+                    IsVisible="{Binding OrdersInitiatedText}"
+                    Padding="20,0,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="14"
+                    VerticalOptions="Center">
+                </Label>
+                <ListView 
+                    IsVisible="{Binding OrdersInitiatedList}"
+                    HeightRequest="{Binding OrdersInitiatedCount}"
+                    HasUnevenRows="true" 
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    ItemsSource="{Binding OrdersInitiated}"
+                    SeparatorVisibility="None"
+                    RefreshCommand="{Binding RefreshCommand}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    CornerRadius="15"
+                                    HasShadow="false"
+                                    Margin="15,8,15,0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SalesDetailCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout 
+                                            Padding="5,0,5,0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center">
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins-Bold"
+                                                FontSize="18" 
+                                                Text="{Binding Id}"
+                                                TextColor="#8c8c8c">
+                                            </Label>
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins"
+                                                FontSize="16" 
+                                                Text="{Binding Total}"
+                                                TextColor="#c3c3c3">
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Column="2"
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            <Button
+                                                Text="{Binding Status}"
+                                                FontFamily="Poppins-Bold"
+                                                TextTransform="None"
+                                                BackgroundColor="{Binding StatusColor}"
+                                                HeightRequest="40"
+                                                TextColor="#414b5a"
+                                                BorderRadius="12"
+                                                FontSize="14">
+                                            </Button>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label
+                    Text="Aceptadas"
+                    Padding="20,0,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="No existen ordenes en este estado."
+                    IsVisible="{Binding OrdersAceptedText}"
+                    Padding="20,0,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="14"
+                    VerticalOptions="Center">
+                </Label>
+                <ListView 
+                    IsVisible="{Binding OrdersAceptedList}"
+                    HeightRequest="{Binding OrdersAceptedCount}"
+                    HasUnevenRows="true" 
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    ItemsSource="{Binding OrdersAcepted}"
+                    SeparatorVisibility="None"
+                    RefreshCommand="{Binding RefreshCommand}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    CornerRadius="15"
+                                    HasShadow="false"
+                                    Margin="15,8,15,5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SalesDetailCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout 
+                                            Padding="5,0,5,0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center">
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins-Bold"
+                                                FontSize="18" 
+                                                Text="{Binding Id}"
+                                                TextColor="#8c8c8c">
+                                            </Label>
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins"
+                                                FontSize="16" 
+                                                Text="{Binding Total}"
+                                                TextColor="#c3c3c3">
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Column="2"
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            <Button
+                                                Text="{Binding Status}"
+                                                FontFamily="Poppins-Bold"
+                                                TextTransform="None"
+                                                BackgroundColor="{Binding StatusColor}"
+                                                HeightRequest="40"
+                                                TextColor="#414b5a"
+                                                BorderRadius="12"
+                                                FontSize="14">
+                                            </Button>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label
+                    Text="Alistamiento"
+                    Padding="20,0,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="No existen ordenes en este estado."
+                    IsVisible="{Binding OrdersEnlistmentText}"
+                    Padding="20,0,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="14"
+                    VerticalOptions="Center">
+                </Label>
+                <ListView 
+                    IsVisible="{Binding OrdersEnlistmentList}"
+                    HeightRequest="{Binding OrdersEnlistmentCount}"
+                    HasUnevenRows="true" 
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    ItemsSource="{Binding OrdersEnlistment}"
+                    SeparatorVisibility="None"
+                    RefreshCommand="{Binding RefreshCommand}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    CornerRadius="15"
+                                    HasShadow="false"
+                                    Margin="15,8,15,5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SalesDetailCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout 
+                                            Padding="5,0,5,0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center">
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins-Bold"
+                                                FontSize="18" 
+                                                Text="{Binding Id}"
+                                                TextColor="#8c8c8c">
+                                            </Label>
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins"
+                                                FontSize="16" 
+                                                Text="{Binding Total}"
+                                                TextColor="#c3c3c3">
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Column="2"
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            <Button
+                                                Text="{Binding Status}"
+                                                FontFamily="Poppins-Bold"
+                                                TextTransform="None"
+                                                BackgroundColor="{Binding StatusColor}"
+                                                HeightRequest="40"
+                                                TextColor="#414b5a"
+                                                BorderRadius="12"
+                                                FontSize="14">
+                                            </Button>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label
+                    Text="Circulación"
+                    Padding="20,0,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="No existen ordenes en este estado."
+                    IsVisible="{Binding OrdersCirculationText}"
+                    Padding="20,0,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="14"
+                    VerticalOptions="Center">
+                </Label>
+                <ListView
+                    IsVisible="{Binding OrdersCirculationList}"
+                    HeightRequest="{Binding OrdersCirculationCount}"
+                    HasUnevenRows="true" 
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    ItemsSource="{Binding OrdersCirculation}"
+                    SeparatorVisibility="None"
+                    RefreshCommand="{Binding RefreshCommand}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    CornerRadius="15"
+                                    HasShadow="false"
+                                    Margin="15,8,15,5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SalesDetailCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout 
+                                            Padding="5,0,5,0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center">
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins-Bold"
+                                                FontSize="18" 
+                                                Text="{Binding Id}"
+                                                TextColor="#8c8c8c">
+                                            </Label>
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins"
+                                                FontSize="16" 
+                                                Text="{Binding Total}"
+                                                TextColor="#c3c3c3">
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Column="2"
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            <Button
+                                                Text="{Binding Status}"
+                                                FontFamily="Poppins-Bold"
+                                                TextTransform="None"
+                                                BackgroundColor="{Binding StatusColor}"
+                                                HeightRequest="40"
+                                                TextColor="#414b5a"
+                                                BorderRadius="12"
+                                                FontSize="14">
+                                            </Button>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label
+                    Text="Entregadas"
+                    Padding="20,0,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="No existen ordenes en este estado."
+                    IsVisible="{Binding OrdersDeliveredText}"
+                    Padding="20,0,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="14"
+                    VerticalOptions="Center">
+                </Label>
+                <ListView 
+                    IsVisible="{Binding OrdersDeliveredList}"
+                    HeightRequest="{Binding OrdersDeliveredCount}"
+                    HasUnevenRows="true" 
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    ItemsSource="{Binding OrdersDelivered}"
+                    SeparatorVisibility="None"
+                    RefreshCommand="{Binding RefreshCommand}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    CornerRadius="15"
+                                    HasShadow="false"
+                                    Margin="15,8,15,5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SalesDetailCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout 
+                                            Padding="5,0,5,0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center">
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins-Bold"
+                                                FontSize="18" 
+                                                Text="{Binding Id}"
+                                                TextColor="#8c8c8c">
+                                            </Label>
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins"
+                                                FontSize="16" 
+                                                Text="{Binding Total}"
+                                                TextColor="#c3c3c3">
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Column="2"
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            <Button
+                                                Text="{Binding Status}"
+                                                FontFamily="Poppins-Bold"
+                                                TextTransform="None"
+                                                BackgroundColor="{Binding StatusColor}"
+                                                HeightRequest="40"
+                                                TextColor="#414b5a"
+                                                BorderRadius="12"
+                                                FontSize="14">
+                                            </Button>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label
+                    Text="Canceladas"
+                    Padding="20,0,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="No existen ordenes en este estado."
+                    IsVisible="{Binding OrdersCanceledText}"
+                    Padding="20,0,0,0"
+                    TextColor="#3a3a3a" 
+                    FontFamily="Poppins"
+                    FontSize="14"
+                    VerticalOptions="Center">
+                </Label>
+                <ListView 
+                    IsVisible="{Binding OrdersCanceledList}"
+                    HeightRequest="{Binding OrdersCanceledCount}"
+                    HasUnevenRows="true" 
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    ItemsSource="{Binding OrdersCanceled}"
+                    SeparatorVisibility="None"
+                    RefreshCommand="{Binding RefreshCommand}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    CornerRadius="15"
+                                    HasShadow="false"
+                                    Margin="15,8,15,5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SalesDetailCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout 
+                                            Padding="5,0,5,0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center">
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins-Bold"
+                                                FontSize="18" 
+                                                Text="{Binding Id}"
+                                                TextColor="#8c8c8c">
+                                            </Label>
+                                            <Label 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                FontFamily="Poppins"
+                                                FontSize="16" 
+                                                Text="{Binding Total}"
+                                                TextColor="#c3c3c3">
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Column="2"
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            <Button
+                                                Text="{Binding Status}"
+                                                FontFamily="Poppins-Bold"
+                                                TextTransform="None"
+                                                BackgroundColor="{Binding StatusColor}"
+                                                HeightRequest="40"
+                                                TextColor="#414b5a"
+                                                BorderRadius="12"
+                                                FontSize="14">
+                                            </Button>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

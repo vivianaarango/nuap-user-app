@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nuap.Views.CartEmptyPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundImageSource="Cart2.png">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding CartEmpty}">
+            <Button
+                Text="Comenzar a comprar"
+                FontFamily="Poppins"
+                TextTransform="None"
+                BackgroundColor="#ffc33a"
+                HeightRequest="60"
+                TextColor="#403e3a"
+                BorderRadius="20"
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="EndAndExpand"
+                Padding="40,0,40,0"
+                Margin="20,0,20,80"
+                Command="{Binding InitPageCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
