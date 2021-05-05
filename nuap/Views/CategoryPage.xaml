@@ -9,9 +9,9 @@
             BindingContext="{Binding AllCategories}"
             Padding="0,15,0,0">
             <Image
-                Source="comercio03"
+                Source="usuario01"
                 HorizontalOptions="FillAndExpand"
-                HeightRequest="175">
+                HeightRequest="165">
             </Image>
             <StackLayout
                 Margin="20,15,20,0">

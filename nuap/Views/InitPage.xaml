@@ -9,7 +9,7 @@
             <StackLayout
                 BackgroundColor="White"
                 Padding="5,0,10,10"
-                BindingContext="{Binding HomeCommerce}">
+                BindingContext="{Binding Home}">
                 <StackLayout
                     Padding="0,0,0,20"
                     Orientation="Horizontal">
@@ -45,7 +45,7 @@
                     </Label>
                     <Label
                         Padding="0,15,0,0"
-                        Text="{Binding CompanyName}"
+                        Text="{Binding UserName}"
                         TextColor="#3a3a3a" 
                         FontFamily="Poppins-Bold"
                         FontSize="16"
@@ -261,7 +261,7 @@
                 <StackLayout
                     Padding="0,15,0,0">
                     <Image
-                        Source="comercio01"
+                        Source="usuario02"
                         HorizontalOptions="FillAndExpand"
                         HeightRequest="185">
                     </Image>

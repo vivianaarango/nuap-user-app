@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nuap.Views.AddressPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundImageSource="Register_2.png">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Address}"
+            Padding="5,120,5,0">
+            <Label
+                Text="Mis direcciones"
+                Padding="15,15,0,0"
+                TextColor="#0274bc" 
+                FontFamily="Poppins-Bold"
+                FontSize="18"
+                VerticalOptions="Center">
+            </Label>
+            <ListView
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding Address}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="true"
+                                Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GetMessagesCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout 
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+                                        <Label 
+                                            HorizontalOptions="StartAndExpand"
+                                            FontFamily="Poppins"
+                                            FontSize="16" 
+                                            Text="{Binding Addres}"
+                                            TextColor="#3a3a3a">
+                                        </Label>
+                                        <Label 
+                                            HorizontalOptions="StartAndExpand"
+                                            FontFamily="Poppins"
+                                            FontSize="14" 
+                                            Text="{Binding Location}"
+                                            TextColor="#c4c4c4">
+                                        </Label>
+                                        <Label
+                                            FontFamily="Poppins"
+                                            FontSize="12" 
+                                            Text="{Binding Neighborhood}"
+                                            TextColor="#2a4d9c">
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout
+                Padding="20,10,20,20">
+                <Button
+                    Text="Crear nueva dirección"
+                    FontFamily="Poppins"
+                    TextTransform="None"
+                    BackgroundColor="#fd8700"
+                    HeightRequest="60"
+                    TextColor="White"
+                    BorderRadius="20"
+                    Padding="20,20,20,20"
+                    FontSize="17"
+                    Command="{Binding CreateAddressCommand}"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

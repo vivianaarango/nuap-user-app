@@ -14,20 +14,34 @@
         }
 
         const string token = "Token";
+        const string id = "Id";
         const string userType = "UserType";
         const string phone = "Phone";
         const string email = "Email";
+        const string cartList = "CartList";
         static readonly string stringDefault = string.Empty;
 
         public static string Token
         {
             get
             {
-                return AppSettings.GetValueOrDefault(token, stringDefault);
+                return AppSettings.GetValueOrDefault(token, null);
             }
             set
             {
                 AppSettings.AddOrUpdateValue(token, value);
+            }
+        }
+
+        public static string Id
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(id, null);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(id, value);
             }
         }
 
@@ -64,6 +78,18 @@
             set
             {
                 AppSettings.AddOrUpdateValue(email, value);
+            }
+        }
+
+        public static string CartList
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(cartList, stringDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(cartList, value);
             }
         }
     }

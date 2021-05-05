@@ -137,6 +137,12 @@
             set;
         }
 
+        public AddressViewModel Address
+        {
+            get;
+            set;
+        }
+
         public CartViewModel Cart
         {
             get;
@@ -144,6 +150,36 @@
         }
 
         public CartEmptyViewModel CartEmpty
+        {
+            get;
+            set;
+        }
+
+        public RegisterViewModel Register
+        {
+            get;
+            set;
+        }
+
+        public PaymentGatewayViewModel PaymentGateway
+        {
+            get;
+            set;
+        }
+
+        public CreateAddressViewModel CreateAddress
+        {
+            get;
+            set;
+        }
+
+        public GenerateOtpViewModel GenerateOTP
+        {
+            get;
+            set;
+        }
+
+        public VerifyOtpViewModel VerifyOTP
         {
             get;
             set;
@@ -214,7 +250,6 @@
             get;
             set;
         }
-
 
         public string OrderAddress
         {

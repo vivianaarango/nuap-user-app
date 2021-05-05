@@ -4,7 +4,7 @@
 
     public class Cart
     {
-        [JsonProperty(PropertyName = "product_id")]
+        [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]

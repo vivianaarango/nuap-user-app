@@ -92,17 +92,33 @@
                         Command="{Binding LoginCommand}"
                         IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
                     </Button>
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Center">
+                        <Label
+                            Text="¿Aún no tienes cuenta?"
+                            FontFamily="Poppins-Bold"
+                            TextColor="Gray"
+                            FontSize="16"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Padding="0,20">
+                        </Label>
+                        <Label
+                            Text="Registrate"
+                            FontFamily="Poppins-Bold"
+                            TextColor="#0274bc"
+                            FontSize="16"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Padding="0,20">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
                     <Label
-                        Text="¿Aún no tienes cuenta? Registrate"
-                        FontFamily="Poppins"
-                        TextColor="Gray"
-                        FontSize="16"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Padding="0,20">
-                    </Label>
-                    <Label
-                        Text="Version: 0.3"
+                        Text="Version: 0.4"
                         FontFamily="Poppins"
                         TextColor="#949494"
                         FontSize="12"

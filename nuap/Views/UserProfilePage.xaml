@@ -83,10 +83,12 @@
                     </Entry>
                 </StackLayout>
                 <Label
+                    Padding="0,15,0,0"
                     Text="¿Deseas cambiar tu contraseña?"
                     TextColor="#0274bc" 
                     FontFamily="Poppins-Bold"
                     FontSize="15"
+                    HorizontalOptions="Center"
                     VerticalOptions="Center">
                 </Label>
                 <StackLayout

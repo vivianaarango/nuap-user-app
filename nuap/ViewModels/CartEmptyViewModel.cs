@@ -22,8 +22,8 @@
         private async void InitPage()
         {
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.HomeCommerce = new HomeCommerceViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new HomeCommerceTabbedPage());
+            mainViewModel.Home = new HomeViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new HomeTabbedPage());
         }
     }
 }

@@ -103,20 +103,23 @@
                                             HorizontalOptions="EndAndExpand"
                                             VerticalOptions="Center">
                                             <StackLayout
-                                                Padding="20,2,0,0"
+                                                Padding="20,0,0,0"
                                                 Orientation="Horizontal">
-                                                <Image 
+                                                <!--..<Image 
                                                     HeightRequest="30"
                                                     Source="menos" 
                                                     HorizontalOptions="EndAndExpand"
                                                     VerticalOptions="Center">
                                                     <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding DiminishCommand}"/>
+                                                        <TapGestureRecognizer Command="{Binding DiminishCommand}"
+                                                                              CommandParameter="{Binding Id}"/>
                                                     </Image.GestureRecognizers>
                                                 </Image>
+                                                -->
                                                 <Entry
+                                                    IsReadOnly="true"
                                                     Text="{Binding Quantity, Mode=TwoWay}"
-                                                    FontFamily="Poppins"
+                                                    FontFamily="Poppins-Bold"
                                                     TextColor="#c4c4c4"
                                                     Keyboard="Numeric"
                                                     WidthRequest="60"
@@ -125,15 +128,23 @@
                                                     HorizontalOptions="EndAndExpand"
                                                     HorizontalTextAlignment="Center">
                                                 </Entry>
-                                                <Image 
+                                                <Label
+                                                    Text="und"
+                                                    TextColor="#c4c4c4" 
+                                                    FontFamily="Poppins-Bold"
+                                                    FontSize="16"
+                                                    VerticalOptions="Center">
+                                                </Label>
+                                                <!--<Image 
                                                     HeightRequest="30"
                                                     Source="mas" 
                                                     HorizontalOptions="EndAndExpand"
                                                     VerticalOptions="Center">
                                                     <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding IncreaseCommand}"/>
+                                                        <TapGestureRecognizer Command="{Binding IncreaseCommand}"
+                                                                              CommandParameter="{Binding Id}"/>
                                                     </Image.GestureRecognizers>
-                                                </Image>
+                                                </Image>-->
                                             </StackLayout>
                                             <StackLayout
                                                 Orientation="Horizontal"
@@ -167,11 +178,11 @@
             <StackLayout
                 Orientation="Horizontal">
                 <Label
-                    Text="Total:"
+                    Text="Envio:"
                     Padding="20,15,0,0"
                     TextColor="#2c3d55" 
                     FontFamily="Poppins"
-                    FontSize="18"
+                    FontSize="16"
                     VerticalOptions="Center">
                 </Label>
                 <Label
@@ -179,17 +190,60 @@
                     Padding="5,15,0,0"
                     TextColor="#2c3d55" 
                     FontFamily="Poppins"
-                    FontSize="18"
+                    FontSize="16"
                     VerticalOptions="Center">
                 </Label>
                 <Label
-                    Text="{Binding Total}"
-                    Padding="0,15,0,15"
+                    Text="{Binding Delivery}"
+                    Padding="0,15,0,0"
                     TextColor="#2c3d55" 
                     FontFamily="Poppins"
-                    FontSize="18"
+                    FontSize="16"
                     VerticalOptions="Center">
                 </Label>
+            </StackLayout>
+            <StackLayout
+                Orientation="Horizontal">
+                <Label
+                    Text="Total:"
+                    Padding="20,0,0,0"
+                    TextColor="#2c3d55" 
+                    FontFamily="Poppins-Bold"
+                    FontSize="20"
+                    VerticalOptions="Center">
+                </Label>
+                <Label
+                    Text="$"
+                    Padding="5,0,0,0"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins-Bold"
+                    FontSize="20"
+                    VerticalOptions="CenterAndExpand">
+                </Label>
+                <Label
+                    Text="{Binding Total}"
+                    Padding="0,14,0,15"
+                    TextColor="#0274bc" 
+                    FontFamily="Poppins-Bold"
+                    FontSize="20"
+                    VerticalOptions="CenterAndExpand">
+                </Label>
+                <Button
+                    Margin="0,0,10,10"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="EndAndExpand"
+                    Text="PAGAR"
+                    FontFamily="Poppins"
+                    TextTransform="None"
+                    BackgroundColor="#ffc33a"
+                    HeightRequest="50"
+                    TextColor="White"
+                    BorderRadius="18"
+                    Padding="0,15"
+                    FontSize="15"
+                    Command="{Binding CreateOrderCommand}"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
+                </Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

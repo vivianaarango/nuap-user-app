@@ -7,6 +7,8 @@
     using GalaSoft.MvvmLight.Command;
     using System.Collections.Generic;
     using Views;
+    using Helpers;
+    using Newtonsoft.Json;
 
     public class ProductDetailViewModel: BaseViewModel
     {
@@ -204,6 +206,15 @@
 
         private async void AddCart()
         {
+            if (this.Quantity == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "",
+                    "No puedes agregar 0 productos al carrito",
+                    "Aceptar");
+                return;
+            }
+
             Cart cart = new Cart();
             cart.Id = this.Product.Id;
             cart.Quantity = this.Quantity;
@@ -217,12 +228,13 @@
                 mainViewModel.CartList = new List<Cart>();
                 mainViewModel.CartList.Add(cart);
                 await Application.Current.MainPage.DisplayAlert(
-                    "Alerta",
+                    "",
                     "Hemos agregado este producto a tu carrito",
                     "Aceptar");
 
-                mainViewModel.HomeCommerce = new HomeCommerceViewModel();
-                await Application.Current.MainPage.Navigation.PushAsync(new HomeCommerceTabbedPage());
+                Settings.CartList = JsonConvert.SerializeObject(mainViewModel.CartList);
+                mainViewModel.Home = new HomeViewModel();
+                await Application.Current.MainPage.Navigation.PushAsync(new HomeTabbedPage());
             } else
             {
                 List<Cart> cartList = new List<Cart>();
@@ -241,13 +253,14 @@
                 cartList.Add(cart);
                 mainViewModel.CartList = new List<Cart>();
                 mainViewModel.CartList = cartList;
+                Settings.CartList = JsonConvert.SerializeObject(mainViewModel.CartList);
                 await Application.Current.MainPage.DisplayAlert(
-                    "Alerta",
+                    "",
                     "Hemos agregado este producto a tu carrito",
                     "Aceptar");
 
-                mainViewModel.HomeCommerce = new HomeCommerceViewModel();
-                await Application.Current.MainPage.Navigation.PushAsync(new HomeCommerceTabbedPage());
+                mainViewModel.Home = new HomeViewModel();
+                await Application.Current.MainPage.Navigation.PushAsync(new HomeTabbedPage());
             }
         }
 
@@ -262,6 +275,7 @@
             this.Length = this.Product.Length;
             this.Width = this.Product.Width;
             this.Height = this.Product.Height;
+
             if (this.Product.HasSpecialPrice == 1)
             {
                 this.Price = this.Product.SalePrice - (this.Product.SalePrice * this.Product.SpecialPrice / 100);

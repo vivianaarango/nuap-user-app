@@ -38,8 +38,9 @@
                     <StackLayout
                         Orientation="Horizontal">
                         <Image 
+                            HeightRequest="35"
                             HorizontalOptions="Start" 
-                            Source="ic_ver_perfil">
+                            Source="Verperfil">
                         </Image>
                         <Button
                             Text="Editar Perfil"
@@ -57,8 +58,9 @@
                     <StackLayout
                         Orientation="Horizontal">
                         <Image 
+                            HeightRequest="35"
                             HorizontalOptions="Start" 
-                            Source="ic_mis_ubicaciones">
+                            Source="MisUbicaciones">
                         </Image>
                             <Button
                                 Text="Mis Direcciones"
@@ -70,14 +72,15 @@
                                 Padding="0,15"
                                 FontSize="16"
                                 HorizontalOptions="Start"
-                                Command="{Binding LoginCommand}">
+                                Command="{Binding AddressCommand}">
                             </Button>
                     </StackLayout>
                     <StackLayout
                         Orientation="Horizontal">
                         <Image 
+                            HeightRequest="35"
                             HorizontalOptions="Start"
-                            Source="ic_historial_de_pedidos">
+                            Source="HistorialdePedidos">
                         </Image>
                         <Button
                             Text="Historial de Pedidos"
@@ -89,7 +92,29 @@
                             Padding="0,15"
                             FontSize="16"
                             HorizontalOptions="Start"
-                            Command="{Binding LoginCommand}">
+                            Command="{Binding OrdersCommand}">
+                        </Button>
+                    </StackLayout>
+                    <StackLayout
+                        Padding="0,0,0,30"
+                        Orientation="Horizontal"
+                        VerticalOptions="EndAndExpand">
+                        <Image 
+                            HeightRequest="35"
+                            HorizontalOptions="Start"
+                            Source="logout">
+                        </Image>
+                        <Button
+                            Text="Cerrar Sesión"
+                            FontFamily="Poppins-Bold"
+                            TextTransform="None"
+                            HeightRequest="60"
+                            TextColor="#2a4d9c"
+                            BackgroundColor="Transparent"
+                            Padding="0,15"
+                            FontSize="16"
+                            HorizontalOptions="Start"
+                            Command="{Binding LogoutCommand}">
                         </Button>
                     </StackLayout>
                 </StackLayout>

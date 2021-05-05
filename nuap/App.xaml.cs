@@ -4,6 +4,9 @@
     using Views;
     using Helpers;
     using ViewModels;
+    using Newtonsoft.Json;
+    using Models;
+    using System.Collections.Generic;
     using System;
 
     public partial class App : Application
@@ -11,23 +14,31 @@
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginPage());
-            /*if (string.IsNullOrEmpty(Settings.Token))
+
+            if (string.IsNullOrEmpty(Settings.Token))
             {
                 MainPage = new NavigationPage(new LoginPage());
-                Console.WriteLine("error");
             } else
             {
-                Console.WriteLine("errordeded");
                 var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.User.api_token = Settings.Token;
-                mainViewModel.User.role = Settings.UserType;
-                mainViewModel.User.phone = Settings.Phone;
-                mainViewModel.User.email = Settings.Email;
+
+                User Usuario = new User();
+                Usuario.api_token = Settings.Token;
+                Usuario.role = Settings.UserType;
+                Usuario.phone = Settings.Phone;
+                Usuario.email = Settings.Email;
+                Usuario.id = Int32.Parse(Settings.Id);
+
+                mainViewModel.User = Usuario;
+
+                if (! string.IsNullOrEmpty(Settings.CartList))
+                {
+                    mainViewModel.CartList = JsonConvert.DeserializeObject<List<Cart>>(Settings.CartList);
+                }
 
                 mainViewModel.Home = new HomeViewModel();
-                MainPage = new HomeTabbedPage();
-            }*/
+                MainPage = new NavigationPage(new HomeTabbedPage());
+            }
         }
 
         protected override void OnStart()

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nuap.Views.VerifyOtpPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="#0274bc"
+            Padding="20,0,20,40"
+            BindingContext="{Binding VerifyOTP}">
+            <Image
+                Source="logo"
+                WidthRequest="170">
+            </Image>
+            <Label
+                Margin="0,50,0,0"
+                Text="Por favor ingresa el código que enviamos a tu celular"
+                TextColor="White" 
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                FontFamily="Poppins-Bold"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            </Label>
+            <Frame
+                CornerRadius="35"
+                OutlineColor="White"
+                Padding="20,90,20,10"
+                VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label
+                        Text="Ingresa el código"
+                        FontFamily="Poppins"
+                        TextColor="#949494"
+                        FontSize="16"
+                        VerticalOptions="Center">
+                    </Label>
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <Image 
+                            HorizontalOptions="Start" 
+                            Source="ic_smartphone">
+                        </Image>
+                        <Entry
+                            Keyboard="Text"
+                            FontFamily="Poppins"
+                            HorizontalOptions="FillAndExpand"
+                            FontSize="16"
+                            TextColor="#3a3a3a"
+                            Text="{Binding Code, Mode=TwoWay}">
+                        </Entry>
+                    </StackLayout>
+                    <Button
+                        Text="Verificar"
+                        FontFamily="Poppins"
+                        TextTransform="None"
+                        BackgroundColor="#fd8700"
+                        HeightRequest="60"
+                        TextColor="White"
+                        BorderRadius="20"
+                        Margin="0,40,0,5"
+                        FontSize="17"
+                        Command="{Binding VerifyOtpCommand}"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
+                    </Button>
+                    <Button
+                        Text="Reenviar código"
+                        FontFamily="Poppins"
+                        TextTransform="None"
+                        BackgroundColor="#ffc33a"
+                        HeightRequest="60"
+                        TextColor="White"
+                        BorderRadius="20"
+                        Margin="0,2"
+                        FontSize="17"
+                        Command="{Binding GenerateOtpCommand}"
+                        IsEnabled="{Binding IsEnabledRetry, Mode=TwoWay}">
+                    </Button>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
